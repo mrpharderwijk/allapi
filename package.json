@@ -10,6 +10,7 @@
     "postbuild": "cp package*.json dist/ && cp prisma/schema.prisma dist/prisma/",
     "start": "node dist/main.js",
     "dev": "ts-node-dev ./src/main.ts | pino-pretty --colorize",
+    "vercel:dev": "vercel dev",
     "postinstall": "prisma generate",
     "update:packages": "npx npm-check-updates -u",
     "db:gen": "prisma generate",
@@ -20,7 +21,8 @@
     "lint:fix": "eslint --fix '{src,test}/**/*.ts'",
     "format": "prettier --write 'src/**/*.ts'",
     "test": "jest --config test/jest.json --runInBand --passWithNoTests --forceExit",
-    "seed:addresses": "ts-node scripts/seed-addresses.ts"
+    "seed:addresses": "ts-node scripts/seed-addresses.ts",
+    "deploy": "vercel deploy --prod"
   },
   "dependencies": {
     "@fastify/aws-lambda": "^5.1.4",
