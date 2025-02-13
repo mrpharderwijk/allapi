@@ -1,0 +1,9 @@
+{
+  "*.{js,ts}": [
+    "npm run check-version",
+    "prettier --write"
+  ],
+  "*.{json,md}": [
+    "prettier --write"
+  ]
+}

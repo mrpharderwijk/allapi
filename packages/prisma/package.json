@@ -1,0 +1,42 @@
+{
+  "name": "@allapi/prisma",
+  "version": "0.0.2",
+  "description": "Shared Prisma client and schema for Allapi",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "prisma"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "husky",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate",
+    "prisma:push": "prisma db push",
+    "check-version": "ts-node scripts/check-version.ts",
+    "pre-commit": "lint-staged"
+  },
+  "keywords": [
+    "prisma",
+    "shared"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "devDependencies": {
+    "@prisma/client": "^5.10.2",
+    "@types/node": "^22.13.1",
+    "@types/semver": "^7.5.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.2.5",
+    "prisma": "^5.10.2",
+    "semver": "^7.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "@prisma/client": "^5.10.2",
+    "prisma": "^5.10.2"
+  }
+}

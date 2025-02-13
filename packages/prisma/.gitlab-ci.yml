@@ -1,0 +1,51 @@
+image: node:20
+
+stages:
+  # - lint
+  # - test
+  - build
+  - publish
+
+cache:
+  paths:
+    - node_modules/
+
+# Install dependencies
+.setup:
+  before_script:
+    - yarn install --frozen-lockfile
+
+# lint:
+#   extends: .setup
+#   stage: lint
+#   script:
+#     - yarn lint
+
+# test:
+#   extends: .setup
+#   stage: test
+#   script:
+#     - yarn test
+
+build:
+  extends: .setup
+  stage: build
+  script:
+    - yarn check-version
+    - yarn build
+  artifacts:
+    paths:
+      - dist/
+
+# Publish to GitLab Package Registry
+publish:
+  extends: .setup
+  stage: publish
+  script:
+    - echo "@allapi:registry=https://${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/" > .npmrc
+    - echo "//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" >> .npmrc
+    - yarn publish
+  # rules:
+  #   - if: $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+.*$/
+  dependencies:
+    - build
