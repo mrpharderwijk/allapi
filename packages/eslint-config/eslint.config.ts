@@ -6,7 +6,8 @@ export default [
   js.configs.recommended,
   {
     languageOptions: {
-      ...globals
+      ...globals.node,
+      ...globals.browser,
     },
     rules: {
       "no-console": [0],
