@@ -1,8 +1,17 @@
 {
-  "name": "@allapi/eslint-config",
-  "version": "0.0.0",
+  "name": "@mrpharderwijk/eslint-config",
+  "version": "0.0.2",
+  "author": "Marnix Harderwijk",
+  "license": "ISC",
   "scripts": {
     "test": "node index.js"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mrpharderwijk/allapi.git"
   },
   "devDependencies": {
     "@eslint/eslint": "^9.8.0",
