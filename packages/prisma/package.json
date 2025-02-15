@@ -1,6 +1,6 @@
 {
   "name": "@mrpharderwijk/prisma",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Shared Prisma client and schema for Allapi",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
