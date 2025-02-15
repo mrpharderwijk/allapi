@@ -1,16 +1,24 @@
 {
-  "name": "@allapi/prisma",
-  "version": "0.0.2",
+  "name": "@mrpharderwijk/allapi",
+  "version": "0.0.6",
   "description": "Shared Prisma client and schema for Allapi",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "author": "Marnix Harderwijk",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mrpharderwijk/allapi.git"
+  },
   "files": [
     "dist",
     "prisma"
   ],
   "scripts": {
     "build": "tsc",
-    "prepare": "husky",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate",
     "prisma:push": "prisma db push",
@@ -21,8 +29,6 @@
     "prisma",
     "shared"
   ],
-  "author": "Your Name",
-  "license": "ISC",
   "devDependencies": {
     "@prisma/client": "^5.10.2",
     "@types/node": "^22.13.1",
