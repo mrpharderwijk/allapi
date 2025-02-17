@@ -1,9 +1,12 @@
 import nx from '@nx/eslint-plugin';
 
+import eslintConfig from './packages/eslint-config/dist/eslint.config.js';
+
 export default [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
+  ...eslintConfig,
   {
     ignores: ['**/dist'],
   },

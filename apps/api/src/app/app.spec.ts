@@ -1,4 +1,5 @@
 import Fastify, { FastifyInstance } from 'fastify';
+
 import { app } from './app';
 
 describe('GET /', () => {

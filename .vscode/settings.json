@@ -1,0 +1,7 @@
+{
+  "terminal.integrated.defaultProfile.osx": "bash",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "eslint.enable": true
+}

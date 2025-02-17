@@ -3,8 +3,12 @@
   "version": "0.0.2",
   "author": "Marnix Harderwijk",
   "license": "ISC",
+  "main": "./dist/eslint.config.js",
+  "exports": {
+    ".": "./dist/eslint.config.js"
+  },
   "scripts": {
-    "test": "node index.js"
+    "build": "tsc"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -16,9 +20,14 @@
   "devDependencies": {
     "@eslint/eslint": "^9.8.0",
     "@eslint/js": "^9.8.0",
+    "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^22.13.1",
+    "@typescript-eslint/eslint-plugin": "^8.24.0",
     "eslint": "^9.8.0",
-    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^15.15.0",
     "jiti": "^2.4.2",
     "typescript-eslint": "^8.19.0"
@@ -26,9 +35,14 @@
   "peerDependencies": {
     "@eslint/eslint": "^9.8.0",
     "@eslint/js": "^9.8.0",
+    "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^22.13.1",
+    "@typescript-eslint/eslint-plugin": "^8.24.0",
     "eslint": "^9.8.0",
-    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^15.15.0",
     "jiti": "^2.4.2",
     "typescript-eslint": "^8.19.0"

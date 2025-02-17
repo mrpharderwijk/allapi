@@ -1,6 +1,7 @@
-import https from "https";
-import { version, name } from "../package.json";
-import semver from "semver";
+import https from 'https';
+import semver from 'semver';
+
+import { name, version } from '../package.json';
 
 interface PackageVersion {
   version: string;
@@ -14,26 +15,26 @@ interface PackageInfo {
 function getLatestVersion(): Promise<string> {
   return new Promise((resolve, reject) => {
     const options: https.RequestOptions = {
-      hostname: "gitlab.com",
+      hostname: 'gitlab.com',
       path: `/api/v4/projects/67059991/packages/npm/${encodeURIComponent(name)}`,
       headers: {
-        "PRIVATE-TOKEN": process.env.GITLAB_TOKEN || "",
+        'PRIVATE-TOKEN': process.env.GITLAB_TOKEN || '',
       },
     };
 
     https
       .get(options, (res) => {
-        let data = "";
+        let data = '';
 
-        res.on("data", (chunk: Buffer) => {
+        res.on('data', (chunk: Buffer) => {
           data += chunk;
         });
 
-        res.on("end", () => {
+        res.on('end', () => {
           try {
             if (res.statusCode === 404) {
               // Package doesn't exist yet
-              resolve("0.0.0");
+              resolve('0.0.0');
               return;
             }
 
@@ -42,7 +43,7 @@ function getLatestVersion(): Promise<string> {
             const versionsObject = packageInfo.versions || [];
             const versionsArray = Object.values(versionsObject);
             if (versionsArray.length === 0) {
-              resolve("0.0.0");
+              resolve('0.0.0');
               return;
             }
 
@@ -59,7 +60,7 @@ function getLatestVersion(): Promise<string> {
           }
         });
       })
-      .on("error", (error: Error) => {
+      .on('error', (error: Error) => {
         reject(new Error(`Failed to fetch from registry: ${error.message}`));
       });
   });
@@ -75,26 +76,26 @@ async function checkVersion(): Promise<void> {
     console.log(`Latest published version: ${latestVersion}`);
 
     if (!semver.valid(currentVersion)) {
-      console.error("❌ Current version is not a valid semver version");
+      console.error('❌ Current version is not a valid semver version');
       process.exit(1);
     }
 
     if (!semver.valid(latestVersion)) {
-      console.error("❌ Latest version is not a valid semver version");
+      console.error('❌ Latest version is not a valid semver version');
       process.exit(1);
     }
 
     if (semver.gt(currentVersion, latestVersion)) {
-      console.log("✅ Current version is newer than published version");
+      console.log('✅ Current version is newer than published version');
       process.exit(0);
     } else {
       console.error(
-        "❌ Current version must be greater than the published version",
+        '❌ Current version must be greater than the published version',
       );
       process.exit(1);
     }
   } catch (error) {
-    console.error("Error:", (error as Error).message);
+    console.error('Error:', (error as Error).message);
     process.exit(1);
   }
 }

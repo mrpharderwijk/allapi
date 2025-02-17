@@ -1,4 +1,27 @@
 {
   "name": "@allapi/prisma",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "main": "packages/prisma/src/index.ts",
+        "outputPath": "packages/prisma/dist",
+        "tsConfig": "packages/prisma/tsconfig.json",
+        "assets": [
+          {
+            "glob": "*.md",
+            "input": "packages/prisma",
+            "output": "."
+          },
+          {
+            "glob": "prisma/*",
+            "input": "packages/prisma",
+            "output": "."
+          }
+        ]
+      }
+    }
+  }
 }

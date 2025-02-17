@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": ".",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "declaration": true,
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "include": ["eslint.config.ts"]
+}

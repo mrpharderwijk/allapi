@@ -1,4 +1,5 @@
 import Fastify from 'fastify';
+
 import { app } from './app/app';
 
 const host = process.env.HOST ?? 'localhost';

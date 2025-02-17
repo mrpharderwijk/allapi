@@ -1,5 +1,5 @@
-import * as path from 'path';
 import { FastifyInstance } from 'fastify';
+import * as path from 'path';
 import AutoLoad from '@fastify/autoload';
 
 /* eslint-disable-next-line */

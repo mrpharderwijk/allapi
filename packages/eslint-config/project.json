@@ -1,4 +1,21 @@
 {
   "name": "@allapi/eslint-config",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "main": "packages/eslint-config/eslint.config.ts",
+        "outputPath": "packages/eslint-config/dist",
+        "tsConfig": "packages/eslint-config/tsconfig.json",
+        "assets": [
+          {
+            "glob": "*.md",
+            "input": "packages/eslint-config",
+            "output": "."
+          }
+        ]
+      }
+    }
+  }
 }

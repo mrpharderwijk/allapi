@@ -43,6 +43,7 @@
   },
   "peerDependencies": {
     "@prisma/client": "^5.10.2",
+    "prettier": "^3.2.5",
     "prisma": "^5.10.2"
   }
 }
