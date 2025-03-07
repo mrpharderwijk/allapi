@@ -1,14 +1,14 @@
-import https from 'https';
-import semver from 'semver';
+import https from 'https'
+import semver from 'semver'
 
-import { name, version } from '../package.json';
+import { name, version } from '../package.json'
 
 interface PackageVersion {
-  version: string;
+  version: string
 }
 
 interface PackageInfo {
-  versions: PackageVersion[];
+  versions: PackageVersion[]
 }
 
 // Function to get the latest version from npm registry
@@ -20,84 +20,84 @@ function getLatestVersion(): Promise<string> {
       headers: {
         'PRIVATE-TOKEN': process.env.GITLAB_TOKEN || '',
       },
-    };
+    }
 
     https
       .get(options, (res) => {
-        let data = '';
+        let data = ''
 
         res.on('data', (chunk: Buffer) => {
-          data += chunk;
-        });
+          data += chunk
+        })
 
         res.on('end', () => {
           try {
             if (res.statusCode === 404) {
               // Package doesn't exist yet
-              resolve('0.0.0');
-              return;
+              resolve('0.0.0')
+              return
             }
 
-            const packageInfo = JSON.parse(data) as PackageInfo;
+            const packageInfo = JSON.parse(data) as PackageInfo
 
-            const versionsObject = packageInfo.versions || [];
-            const versionsArray = Object.values(versionsObject);
+            const versionsObject = packageInfo.versions || []
+            const versionsArray = Object.values(versionsObject)
             if (versionsArray.length === 0) {
-              resolve('0.0.0');
-              return;
+              resolve('0.0.0')
+              return
             }
 
             // Get the latest version
             const latestVersion =
-              versionsArray[versionsArray.length - 1].version;
-            resolve(latestVersion);
+              versionsArray[versionsArray.length - 1].version
+            resolve(latestVersion)
           } catch (error) {
             reject(
               new Error(
                 `Failed to parse registry response: ${(error as Error).message}`,
               ),
-            );
+            )
           }
-        });
+        })
       })
       .on('error', (error: Error) => {
-        reject(new Error(`Failed to fetch from registry: ${error.message}`));
-      });
-  });
+        reject(new Error(`Failed to fetch from registry: ${error.message}`))
+      })
+  })
 }
 
 // Main function to compare versions
 async function checkVersion(): Promise<void> {
   try {
-    const latestVersion = await getLatestVersion();
-    const currentVersion = version;
+    const latestVersion = await getLatestVersion()
+    const currentVersion = version
 
-    console.log(`Current version: ${currentVersion}`);
-    console.log(`Latest published version: ${latestVersion}`);
+    console.log(`Current version: ${currentVersion}`)
+    console.log(`Latest published version: ${latestVersion}`)
 
     if (!semver.valid(currentVersion)) {
-      console.error('❌ Current version is not a valid semver version');
-      process.exit(1);
+      console.error('❌ Current version is not a valid semver version')
+      process.exit(1)
     }
 
     if (!semver.valid(latestVersion)) {
-      console.error('❌ Latest version is not a valid semver version');
-      process.exit(1);
+      console.error('❌ Latest version is not a valid semver version')
+      process.exit(1)
     }
 
     if (semver.gt(currentVersion, latestVersion)) {
-      console.log('✅ Current version is newer than published version');
-      process.exit(0);
+      console.log('✅ Current version is newer than published version')
+      process.exit(0)
     } else {
       console.error(
         '❌ Current version must be greater than the published version',
-      );
-      process.exit(1);
+      )
+      process.exit(1)
     }
   } catch (error) {
-    console.error('Error:', (error as Error).message);
-    process.exit(1);
+    console.error('Error:', (error as Error).message)
+    process.exit(1)
   }
 }
 
-checkVersion();
+checkVersion()
