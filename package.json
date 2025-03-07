@@ -4,18 +4,31 @@
   "license": "MIT",
   "scripts": {
     "start": "nps",
-    "package:eslint-config:build": "cd packages/eslint-config && yarn build"
+    "lint:all": "npx nx run-many -t lint -p '*'",
+    "lint:all:fix": "npx nx run-many -t lint -p '*' --fix",
+    "build:check-version": "cd packages/check-version && yarn build",
+    "build:eslint-config": "cd packages/eslint-config && yarn build",
+    "build:prisma": "cd packages/prisma && yarn build",
+    "publish:check-version": "cd packages/check-version && yarn publish",
+    "publish:eslint-config": "cd packages/eslint-config && yarn publish",
+    "publish:prisma": "cd packages/prisma && yarn publish"
   },
   "private": true,
   "dependencies": {
     "@fastify/autoload": "~6.0.3",
+    "@fastify/cors": "^11.0.0",
+    "@fastify/jwt": "^9.0.4",
+    "@fastify/rate-limit": "^10.2.2",
     "@fastify/sensible": "~6.0.2",
+    "@mrpharderwijk/prisma": "^0.0.13",
     "axios": "^1.6.0",
+    "bcrypt": "^5.1.1",
     "fastify": "~5.2.1",
     "fastify-plugin": "~5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@mrpharderwijk/eslint-config": "^0.0.17",
     "@nx/esbuild": "20.4.2",
     "@nx/eslint": "20.4.2",
     "@nx/eslint-plugin": "20.4.2",
@@ -35,6 +48,7 @@
     "esbuild": "^0.19.2",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-unused-imports": "^4.1.4",

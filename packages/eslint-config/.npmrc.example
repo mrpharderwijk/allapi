@@ -1,2 +1,2 @@
-[github-username]:registry=https://npm.pkg.github.com/
+@mrpharderwijk:registry=https://npm.pkg.github.com/allapi
 //npm.pkg.github.com/:_authToken=[github-token]

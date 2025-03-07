@@ -1,0 +1,26 @@
+{
+  "name": "@allapi/check-version",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "tsc && cp package.json dist",
+    "test": "node index.js",
+    "dev": "ts-node packages/check-version/src/cli/index.ts check --remote-url='https://api.github.com/users/mrpharderwijk/packages/npm/eslint-config/versions' --package-path='./package.json'"
+  },
+  "devDependencies": {
+    "semver": "^7.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "semver": "^7.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "bin": {
+    "check-semver": "./dist/cli/index.js"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "semver": "^7.5.4"
+  }
+}

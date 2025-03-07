@@ -1,0 +1,8 @@
+.gitignore
+.env
+.npmrc.example
+scripts/
+src/
+project.json
+tsconfig.cjs.json
+tsconfig.json

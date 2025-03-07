@@ -1,21 +1,26 @@
 {
-  "name": "@mrpharderwijk/eslint-config",
-  "version": "0.0.2",
+  "name": "@allapi/eslint-config",
+  "version": "0.0.1",
   "author": "Marnix Harderwijk",
   "license": "ISC",
+  "type": "module",
   "main": "./dist/eslint.config.js",
   "exports": {
-    ".": "./dist/eslint.config.js"
+    ".": {
+      "import": "./dist/eslint.config.js",
+      "require": "./dist/eslint.config.cjs"
+    }
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json && node scripts/post-build.js",
+    "publish": "npm publish"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:mrpharderwijk/allapi.git"
+    "url": "git+ssh://git@github.com/mrpharderwijk/allapi.git"
   },
   "devDependencies": {
     "@eslint/eslint": "^9.8.0",
@@ -25,11 +30,13 @@
     "@typescript-eslint/eslint-plugin": "^8.24.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^15.15.0",
     "jiti": "^2.4.2",
+    "typescript": "^5.7.3",
     "typescript-eslint": "^8.19.0"
   },
   "peerDependencies": {
@@ -40,11 +47,13 @@
     "@typescript-eslint/eslint-plugin": "^8.24.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^15.15.0",
     "jiti": "^2.4.2",
+    "typescript": "^5.7.3",
     "typescript-eslint": "^8.19.0"
   }
 }

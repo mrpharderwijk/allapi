@@ -1,0 +1,13 @@
+{
+  "name": "@allapi/check-version",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "dev": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "check-version:build",
+        "script": "src/cli/index.ts"
+      }
+    }
+  }
+}

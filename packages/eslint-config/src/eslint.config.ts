@@ -1,30 +1,31 @@
-import type { Linter } from 'eslint';
-import eslintConfigPrettier from 'eslint-config-prettier';
-import prettier from 'eslint-plugin-prettier';
-import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import unusedImports from 'eslint-plugin-unused-imports';
-import globals from 'globals';
-import js from '@eslint/js';
+import type { Linter } from 'eslint'
+import prettier from 'eslint-config-prettier'
+import eslintPluginPrettier from 'eslint-plugin-prettier'
+import eslintPluginSimpleImportSort from 'eslint-plugin-simple-import-sort'
+import eslintPluginUnusedImports from 'eslint-plugin-unused-imports'
+import globals from 'globals'
+import eslintJs from '@eslint/js'
 
 const customGlobals = {
   languageOptions: {
     globals: {
-      ...globals.node,
       ...globals.browser,
+      ...globals.jest,
+      ...globals.node,
     },
   },
-};
+}
 
 export default [
-  js.configs.recommended,
+  eslintJs.configs.recommended,
   customGlobals,
-  eslintConfigPrettier,
+  prettier,
   {
     plugins: {
-      prettier,
+      prettier: eslintPluginPrettier,
       // '@typescript-eslint': tseslint.plugin,
-      'unused-imports': unusedImports,
-      'simple-import-sort': simpleImportSort,
+      'simple-import-sort': eslintPluginSimpleImportSort,
+      'unused-imports': eslintPluginUnusedImports,
     },
     rules: {
       endOfLine: 'off',
@@ -78,4 +79,4 @@ export default [
       'simple-import-sort/exports': 'error',
     },
   },
-] satisfies Linter.Config[];
+] satisfies Linter.Config[]
